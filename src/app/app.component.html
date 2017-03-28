@@ -51,3 +51,19 @@
   <input type="text" #b (keyup)="0" />
   <em>Value of input a is: {{b.value}}</em><br>
 </div>
+
+<br>
+
+<div>
+  <label for="yo4">Change email user</label><br>
+  <input type="text" #mail (keyup)="keyPress($event)" />
+  <em>Value of input a is: {{mail.value}}</em><br>
+</div>
+
+<br>
+
+<div>
+  <label for="yo5">Change email user with enter</label><br>
+  <input type="text" #mailEnter (keyup.enter)="changeEmail(mailEnter.value)" />
+  <em>Value of input a is: {{mailEnter.value}}</em><br>
+</div>
