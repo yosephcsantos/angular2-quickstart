@@ -45,6 +45,13 @@ export class AppComponent  {
       this.changeEmail(inputElem.value)
     }
   }
+
+  private users:Array<User> = [
+    {username: 'one', email: '1@son.com'},
+    {username: 'two', email: '2@son.com'},
+    {username: 'three', email: '3@son.com'},
+    {username: 'four', email: '4@son.com'}
+  ]
 }
 
 interface User {
