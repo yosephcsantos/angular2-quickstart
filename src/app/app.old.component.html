@@ -1,0 +1,83 @@
+<h1>Hello {{name}}</h1>
+<p>Works template</p>
+
+<h1>Data username logged</h1>
+
+<div *ngIf="!hideEmail">
+  <p>Hi {{ username }}</p>
+  <p>Your username is {{ currentUser.username }} <em [hidden]='hideEmail'>and email is {{ currentUser.email }}</em></p>
+  <button (click)="toogleEmail()">EmailToggle</button>
+</div>
+
+<br><br>
+
+<div>
+  <em>Email: {{newEmail.value}}</em>
+  <input type="text" #newEmail>
+  <button type="button" name="button" (click)="changeEmail(newEmail.valeu)">changeEmail</button>
+</div>
+
+<p>Hello {{getUsername()}}!</p>
+<!--
+
+<div>
+  <label for="yo">Test disabledInput</label><br>
+  <input [style.background-color]="bgColor" id="yo" [disabled]="disabledInput" value="{{ getUsername() }}" type="text" />
+  <button (mouseleave)="toogleLeave()">Toogle(mouseleave)</button>
+</div>
+
+<br>
+
+<div>
+  <label for="yo0">Test disabledInput</label><br>
+  <input [style.background-color]="bgColor" id="yo0" [disabled]="disabledInput" value="{{ getUsername() }}" type="text" />
+  <button (click)="toogle()">Toogle(click)</button>
+</div>
+
+<br>
+
+<div>
+  <label for="yo1">Test isDisabled function</label><br>
+  <input [class.blue-bg]="isBlueBg" id="yo1" [disabled]="isDisabled()" value="{{ username }}" type="text" />
+</div>
+
+<br>
+
+<div>
+  <label for="yo2">Value A of keyPress</label><br>
+  <input type="text" #a/>
+  <em>Value of input a is: {{a.value}}</em><br>
+  <button (click)="keyPress(a.value)">Button</button>
+</div>
+
+<br>
+
+<div>
+  <label for="yo3">Value A of keyUp: Real time</label><br>
+  <input type="text" #b (keyup)="0" />
+  <em>Value of input a is: {{b.value}}</em><br>
+</div>
+
+<br>
+
+<div>
+  <label for="yo4">Change email user</label><br>
+  <input type="text" #mail (keyup)="keyPress($event)" />
+  <em>Value of input a is: {{mail.value}}</em><br>
+</div>
+
+<br>
+-->
+<div>
+  <label for="yo5">Change email user with enter</label><br>
+  <input type="text" #mailEnter (keyup.enter)="changeEmail(mailEnter.value)" />
+  <em>Value of input a is: {{mailEnter.value}}</em><br>
+</div>
+
+
+  <ul>
+    <li *ngFor="let user of users; let i = index">
+      ({{i+1}}) {{user.username}} - <em>{{user.email}}</em>
+    </li>
+
+  </ul>
