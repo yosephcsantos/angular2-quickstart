@@ -1,42 +1,9 @@
 <h1>Personal account</h1>
 
 <div>
-  <h2>Your Accounts</h2>
-  <p *ngIf="!_accounts || _accounts.length == 0"> You don't have any accounts yet.</p>
-
-  <div class="info" *ngFor="let acc of _accounts, let i = index"
-  [ngClass]="{
-    selected: _selected[i],
-    otherCssClass: otherProperty
-  }">
-    <h3>{{acc.title}} ({{acc.id}})</h3>
-    <p>{{acc.description}}</p>
-    <p>Balance: <strong>({{acc.balance}})</strong></p>
-    <button class="btn btn-delete" type="button" name="button" (click)="removeAcc(i)">Delete</button>
-    <button class="btn" type="button" name="button" (click)="selected(i)">{{btnSelectText[i]}}</button>
-    <br>
-    <br>
-  </div>
-
   <div>
-    <div>
-      <label for="title">Title</label>
-      <input type="text" id="title" value="" #title>
-    </div>
-
-    <div>
-      <label for="desc">description</label>
-      <input type="text" id="desc" value="" #desc>
-    </div>
-
-    <div>
-      <label for="bal">balance</label>
-      <input type="text" id="bal" value="" #bal>
-    </div>
-
-    <div>
-      <button type="button" (click)="createAcc(title, desc, bal)" name="button">Create</button>
-    </div>
+    <accounts-list [accounts]="_accounts" (delete)="removeAcc($event)"></accounts-list>
+    <account-form (created)="createAcc($event)"></account-form>
 
   </div>
 </div>
