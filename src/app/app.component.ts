@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {Account} from './account.model';
 
+const textBtnSelect:string = 'Select'
+
 @Component({
   selector: 'my-app',
   templateUrl: 'app/app.component.html',
@@ -21,7 +23,7 @@ export class AppComponent {
   private _selected:Array<boolean> = [false, false]
 
   private _nextId = 3
-
+  private btnSelectText:Array<string> = [textBtnSelect, textBtnSelect]
   private resetDataBank(titleEl:any, descEl:any, balEl:any) {
     titleEl.value = ''
     descEl.value = ''
@@ -43,5 +45,10 @@ export class AppComponent {
 
   private selected(index:number) {
     this._selected[index] = !this._selected[index]
+
+    if(this._selected[index])
+      this.btnSelectText[index] = 'Deselect'
+    else
+      this.btnSelectText[index] = textBtnSelect
   }
 }

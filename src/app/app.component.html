@@ -13,7 +13,7 @@
     <p>{{acc.description}}</p>
     <p>Balance: <strong>({{acc.balance}})</strong></p>
     <button class="btn btn-delete" type="button" name="button" (click)="removeAcc(i)">Delete</button>
-    <button class="btn" type="button" name="button" (click)="selected(i)">Select</button>
+    <button class="btn" type="button" name="button" (click)="selected(i)">{{btnSelectText[i]}}</button>
     <br>
     <br>
   </div>
