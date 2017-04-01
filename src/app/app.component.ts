@@ -3,14 +3,22 @@ import {Account} from './account.model';
 
 @Component({
   selector: 'my-app',
-  templateUrl: 'app/app.component.html'
+  templateUrl: 'app/app.component.html',
+  styleUrls: ['app/app.component.css']
 })
 
 export class AppComponent {
   private _accounts:Array<Account> = [
-    { id:1, title:'Bank Pactual', description:'this is my main bank', balance:5 },
+    {
+      id:1,
+      title:'Bank Pactual',
+      description:'this is my main bank',
+      balance:5
+    },
     new Account( 2, 'Bank ixda', 'secret bank', 2000)
   ]
+
+  private _selected:Array<boolean> = [false, false]
 
   private _nextId = 3
 
@@ -22,6 +30,7 @@ export class AppComponent {
 
   private createAcc(titleEl:any, descEl:any, balEl:any) {
     this._accounts.push(new Account(this._nextId, titleEl.value, descEl.value, balEl.value))
+    this._selected.push(false);
     this._nextId++
 
     this.resetDataBank(titleEl, descEl, balEl);
@@ -29,5 +38,10 @@ export class AppComponent {
 
   private removeAcc(index:number) {
     this._accounts.splice(index, 1)
+    this._selected.splice(index, 1)
+  }
+
+  private selected(index:number) {
+    this._selected[index] = !this._selected[index]
   }
 }
