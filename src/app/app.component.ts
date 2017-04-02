@@ -1,44 +1,35 @@
 import {Account} from './account/account.model';
 import {AccountsList} from './account/account_list.component';
 import { AccountForm } from './account/account_form.component';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ViewChildren, QueryList, Injector } from '@angular/core';
+import { AccountService } from './account/account.service';
 
 @Component({
   selector: 'my-app',
   templateUrl: 'app/app.component.html',
   entryComponents: [AccountsList, AccountForm],
-  styleUrls: ['app/app.component.css']
+  styleUrls: ['app/app.component.css'],
+  providers: [AccountService]
 })
 
 export class AppComponent {
-  private _nextId = 3
-  private createAccError:string = ''
-  private accLimit:number = 3
-  private _accounts:Array<Account> = [
-    {
-      id:1,
-      title:'Bank Pactual',
-      description:'this is my main bank',
-      balance:5
-    },
-    new Account( 2, 'Bank ixda', 'secret bank', 2000)
-  ]
+  private _accounts:Array<Account>;
+  private _accountService:AccountService;
 
+  constructor(accountService:AccountService) {
+    this._accountService = accountService;
+    this._accounts = this._accountService.getAll();
+  }
+
+  private createAccError:string = '';
+
+  @ViewChild(AccountForm) form:AccountForm;
   private createAcc(newAccount:Account) {
-    this.createAccError = ""
-
-    if(this._accounts.length < this.accLimit){
-      newAccount.id = this._nextId++;
-      this._accounts.push(newAccount);
-
-      this.form.resetForm();
-    } else
-      this.createAccError = 'Only' + this.accLimit + 'account(s) allowed.'
+    this._accountService.create(newAccount);
+    this.form.resetForm();
   }
 
   private removeAcc(index:number) {
-    this._accounts.splice(index, 1)
+    this._accountService.remove(index);
   }
-
-  @ViewChild(AccountForm) form:AccountForm;
 }
