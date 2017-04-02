@@ -1,5 +1,5 @@
 import {Account} from './account.model';
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'account-form',
@@ -14,14 +14,13 @@ export class AccountForm {
   private createAcc(titleEl:any, descEl:any, balEl:any) {
     var newAccount:Account = new Account(0, titleEl.value, descEl.value, balEl.value);
     this.created.emit(newAccount);
-
-    this.resetDataBank(titleEl, descEl, balEl);
   }
 
-  private resetDataBank(titleEl:any, descEl:any, balEl:any) {
-    titleEl.value = ''
-    descEl.value = ''
-    balEl.value = 0
+  @ViewChild('form') form:ElementRef;
+  @Input() error:string
+
+  public resetForm() {
+    this.form.nativeElement.reset();
   }
 
 }
