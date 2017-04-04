@@ -2,14 +2,15 @@ import {Account} from './account/account.model';
 import {AccountsList} from './account/account_list.component';
 import { AccountForm } from './account/account_form.component';
 import { Component, ViewChild, ViewChildren, QueryList, Injector } from '@angular/core';
-import { AccountService } from './account/account.service';
+import { AccountService, ACCOUNT_SERVICE_PROVIDERS } from './account/account.service';
 
 @Component({
   selector: 'my-app',
   templateUrl: 'app/app.component.html',
   entryComponents: [AccountsList, AccountForm],
   styleUrls: ['app/app.component.css'],
-  providers: [AccountService]
+  // providers: [AccountService]
+  providers: [ ACCOUNT_SERVICE_PROVIDERS ]
 })
 
 export class AppComponent {
