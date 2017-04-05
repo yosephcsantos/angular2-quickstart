@@ -19,18 +19,25 @@ export class AppComponent {
 
   constructor(accountService:AccountService) {
     this._accountService = accountService;
-    this._accounts = this._accountService.getAll();
+    var promise = this._accountService.getAll();
+    promise.then(accounts => this._accounts = accounts);
   }
 
   private createAccError:string = '';
 
-  @ViewChild(AccountForm) form:AccountForm;
   private createAcc(newAccount:Account) {
-    this._accountService.create(newAccount);
-    this.form.resetForm();
+    this._accountService.create(newAccount)
+    .then(account => {
+      console.log(account);
+      this.createAccError = ""
+      this.form.resetForm();
+    })
+    .catch(err => this.createAccError = err);
   }
 
   private removeAcc(index:number) {
     this._accountService.remove(index);
   }
+
+  @ViewChild(AccountForm) form:AccountForm;
 }

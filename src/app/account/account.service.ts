@@ -18,18 +18,28 @@ export class AccountService {
   ]
 
   private _nextId = 3
+  private _accountLimit = 3;
 
-  public getAll():Array<Account> {
-    return this._accounts;
+  public getAll():Promise<Array<Account>> {
+    return Promise.resolve(this._accounts);
   }
 
   public create(newAccount:Account) {
-    newAccount.id = this._nextId++;
+    return new Promise((resolve, reject) => {
+      if(this._accounts.length >= this._accountLimit){
+        reject("Maximum accounts limit reached!");
+        return;
+      }
 
-    if(this._logger)
-      this._logger.log('Account created ' + newAccount.title )
+      newAccount.id = this._nextId++;
 
-    this._accounts.push(newAccount);
+      if(this._logger)
+        this._logger.log('Account created ' + newAccount.title )
+
+      this._accounts.push(newAccount);
+      resolve(newAccount);
+    })
+
   }
 
   public remove(index:number) {
