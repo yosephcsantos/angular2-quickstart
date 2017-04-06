@@ -1,0 +1,5 @@
+<h1>Personal account</h1>
+
+<accounts-list [accounts]="_accounts" (delete)="removeAcc($event)"></accounts-list>
+<account-form (created)="createAcc($event)" [error]="createAccError"></account-form>
+<button routerLink="/accounts" >LOOK ACCOUNTS</button>
