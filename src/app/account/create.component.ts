@@ -21,7 +21,6 @@ export class CreateComponent {
   private createAcc(newAccount:Account) {
     this._accountService.create(newAccount)
     .then(account => {
-      console.log(account);
       this.createAccError = ""
       this.form.resetForm();
     })

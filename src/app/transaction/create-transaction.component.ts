@@ -14,7 +14,6 @@ export class CreateTransactionComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._paramSub = this._route.params.subscribe(params => {
       this._accountId = +params['account'];
-      console.log("this._accountId === ", this._accountId)
     })
   }
 

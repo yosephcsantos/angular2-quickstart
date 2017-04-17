@@ -31,7 +31,7 @@ export class DetailsComponent implements OnInit, OnDestroy  {
       .catch(err => this._error = err);
 
       this._transactionService.getByAccount(id)
-      .then(trans => { this._trans = trans });
+      .then(trans => this._trans = trans );
     });
   }
 
