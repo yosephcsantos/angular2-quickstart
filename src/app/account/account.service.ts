@@ -48,6 +48,18 @@ export class AccountService {
 
     this._accounts.splice(index, 1);
   }
+
+  public getById(accountId:number):Promise<Account>{
+    return new Promise((resolve, reject) => {
+      let foundAcc = this._accounts.find(acc => acc.id == accountId);
+
+      if(!foundAcc) {
+        reject('No account with this id');
+      } else {
+        resolve(foundAcc);
+      }
+    });
+  }
 }
 
 export let ACCOUNT_SERVICE_PROVIDERS:Array<any> = [ AccountService, LoggerService ];
